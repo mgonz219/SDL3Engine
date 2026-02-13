@@ -10,7 +10,7 @@ SDL_Sys::SDL_Sys() {
     if (SDL_Init(SDL_INIT_VIDEO) != 0) {
         std::string err = SDL_GetError();
         std::cerr << "SDL_Init failed: " << SDL_GetError() << std::endl;
-        throw std::runtime_error(err);
+        //throw std::runtime_error(err);
     }
 }
 
