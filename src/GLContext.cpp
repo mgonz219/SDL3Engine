@@ -33,3 +33,28 @@ void GLContext::makeCurrent(Window& window) {
         throw std::runtime_error(std::string("SDL_GL_MakeCurrent failed: ") + SDL_GetError());
     }   
 }
+
+void GL_Context::swap(Winow& window)[
+    SDL_GL_SwapWindow(window.get());
+]
+
+void GLContext::setViewport(int w, int h){
+    glViewport(0,0,w,h);
+}
+
+GlContext::~GLContext(){
+    if(ctx) SDL_GL_DestroyContext(ctx);
+}
+
+GLContext::GLContext(GLContext& other) noexcept : ctx(other.ctx){
+    other.ctx = nullptr;
+}
+
+GL_Context& GLContext::operator=(GLContext&& other) noexcept{
+    if(this != &other){
+        if(ctx) SDL_GL_DestroyContext(ctx);
+        ctx = other.ctx;
+        other.ctx = nullptr;
+    }
+    return *this;
+}
