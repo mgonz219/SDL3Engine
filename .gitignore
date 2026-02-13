@@ -1,0 +1,10 @@
+build/
+.vscode/
+.cache/
+external/glad/build/
+*.o
+*.obj
+*.a
+*.so
+*.out
+compile_commands.json
