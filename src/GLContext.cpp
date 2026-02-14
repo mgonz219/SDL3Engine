@@ -15,13 +15,13 @@ void GLContext::setDefaultAttributes() {
     SDL_GL_SetAttribute(SDL_GL_STENCIL_SIZE, 8);
 }
 
-GLContext:GLContext(Window& winodw){
+GLContext::GLContext(Window& window){
     ctx = SDL_GL_CreateContext(window.get());
     if(!ctx){
         throw std::runtime_error(std::string("SDL_GL_CreateContext failed: ") + SDL_GetError());
     }
 
-    makeCurrent(window);
+    GLContext::makeCurrent(window);
 
     if(!gladLoadGLLoader((GLADloadproc)SDL_GL_GetProcAddress)){
         throw std::runtime_error("gladLoadGLLoader failed");
@@ -34,15 +34,15 @@ void GLContext::makeCurrent(Window& window) {
     }   
 }
 
-void GL_Context::swap(Winow& window)[
+void GLContext::swap(Window& window){
     SDL_GL_SwapWindow(window.get());
-]
+}
 
 void GLContext::setViewport(int w, int h){
     glViewport(0,0,w,h);
 }
 
-GlContext::~GLContext(){
+GLContext::~GLContext(){
     if(ctx) SDL_GL_DestroyContext(ctx);
 }
 
