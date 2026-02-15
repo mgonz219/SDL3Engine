@@ -6,7 +6,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-
 include(FetchContent)
 
 # ---- SDL3 ----
@@ -24,10 +23,12 @@ find_package(OpenGL REQUIRED)
 add_library(glad STATIC
   external/glad/src/glad.c
 )
-
 target_include_directories(glad PUBLIC
   ${CMAKE_CURRENT_SOURCE_DIR}/external/glad/include
 )
+
+# ---- GLM (vendored) ----
+add_subdirectory(external/glm)
 
 # ---- Your executable ----
 file(GLOB_RECURSE ENGINE_SOURCES CONFIGURE_DEPENDS
@@ -45,6 +46,7 @@ target_link_libraries(SDL3Engine PRIVATE
   SDL3::SDL3
   glad
   OpenGL::GL
+  glm::glm
 )
 
 if (CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")

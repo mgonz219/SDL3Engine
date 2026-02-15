@@ -1,4 +1,6 @@
-#pragma once
+/*
+
+pragma once
 
 struct string;
 
@@ -20,3 +22,4 @@ class Shader{
 
 
 };
+*/

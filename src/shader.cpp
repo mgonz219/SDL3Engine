@@ -1,3 +1,5 @@
+/*
+
 #include "shader.h"
 #include "glad/glad.h"
 #include "SDL3/SDL.h"
@@ -18,3 +20,5 @@ Shader(const string& vertexSrc, const string& fragmentSrc){
         glDeleteShader(vertexShader);
         glDeleteShader(fragmentShader);
 }
+
+*/
