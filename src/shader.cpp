@@ -5,8 +5,7 @@
 
 
 
-Shader(const string& vertexSrc,
-    const string& fragmentSrc){
+Shader(const string& vertexSrc, const string& fragmentSrc){
         std::string vertexCode = readFile(vertexPath);
         std::string fragmentCode = readFile(fragmentPath);
 
