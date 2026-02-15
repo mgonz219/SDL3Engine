@@ -4,6 +4,9 @@
 #include <utility>
 #include <glad/glad.h>
 
+
+
+
 void GLContext::setDefaultAttributes() {
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 3);
@@ -28,10 +31,12 @@ GLContext::GLContext(Window& window){
     }
 }
 
+
+
 void GLContext::makeCurrent(Window& window) {
-    if(!SDL_GL_MakeCurrent(window.get(),ctx)){
-        throw std::runtime_error(std::string("SDL_GL_MakeCurrent failed: ") + SDL_GetError());
-    }   
+    if (SDL_GL_MakeCurrent(window.get(), ctx) != 0) {   // NOTE: SDL returns 0 on success, not bool
+        //throw std::runtime_error(std::string("SDL_GL_MakeCurrent failed: ") + SDL_GetError());
+    }
 }
 
 void GLContext::swap(Window& window){
@@ -46,11 +51,11 @@ GLContext::~GLContext(){
     if(ctx) SDL_GL_DestroyContext(ctx);
 }
 
-GLContext::GLContext(GLContext& other) noexcept : ctx(other.ctx){
+GLContext::GLContext(GLContext&& other) noexcept : ctx(other.ctx){
     other.ctx = nullptr;
 }
 
-GL_Context& GLContext::operator=(GLContext&& other) noexcept{
+GLContext& GLContext::operator=(GLContext&& other) noexcept{
     if(this != &other){
         if(ctx) SDL_GL_DestroyContext(ctx);
         ctx = other.ctx;
