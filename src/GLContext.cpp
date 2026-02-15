@@ -35,7 +35,7 @@ GLContext::GLContext(Window& window){
 
 void GLContext::makeCurrent(Window& window) {
     if (SDL_GL_MakeCurrent(window.get(), ctx) != 0) {   // NOTE: SDL returns 0 on success, not bool
-        //throw std::runtime_error(std::string("SDL_GL_MakeCurrent failed: ") + SDL_GetError());
+        throw std::runtime_error(std::string("SDL_GL_MakeCurrent failed: ") + SDL_GetError());
     }
 }
 
