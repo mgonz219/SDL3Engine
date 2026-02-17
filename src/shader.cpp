@@ -21,4 +21,26 @@ Shader(const string& vertexSrc, const string& fragmentSrc){
         glDeleteShader(fragmentShader);
 }
 
+//
+static GLuint compileShader(GLenum type, const char* src) {
+    GLuint s = glCreateShader(type);
+    glShaderSource(s, 1, &src, nullptr);
+    glCompileShader(s);
+    
+    GLint ok = 0;
+    glGetShaderiv(s, GL_COMPILE_STATUS, &ok);
+    if (!ok) {
+        GLint len = 0;
+        glGetShaderiv(s, GL_INFO_LOG_LENGTH, &len);
+        std::string log(len, '\0');
+        glGetShaderInfoLog(s, len, nullptr, log.data());
+        std::fprintf(stderr, "Shader compile error:\n%s\n", log.c_str());
+        glDeleteShader(s);
+        return 0;
+    }
+    return s;
+    
+}
+
+
 */

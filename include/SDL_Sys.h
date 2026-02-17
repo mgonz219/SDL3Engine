@@ -6,8 +6,8 @@
 
 struct SDL_Window;
 struct SDL_Renderer;
+struct SDL_DisplayMode;
 
-// RULE OF ZERO
 
 
 
@@ -17,6 +17,10 @@ public:
 
 	SDL_Sys();
 	~SDL_Sys();
+	SDL_DisplayMode* mode = nullptr;
+
+	int w = 0;
+	int h = 0;
 	
 
 
@@ -28,8 +32,8 @@ public:
 
 private:
 
-	SDL_Window* window = nullptr;
-	SDL_Renderer* renderer = nullptr;
+
+	
 
 
 

@@ -12,7 +12,7 @@
 #include "SDL3/SDL_opengl.h"
 
 #include "renderer.h"
-//#include "SDL_Sys.h"
+#include "SDL_Sys.h"
 #include "window.h"
 #include "GLContext.h"
 
@@ -67,10 +67,8 @@ static GLuint makeProgram(const char* vsSrc, const char* fsSrc) {
 
 int main() {
     SDL_ClearError();
-    if (SDL_Init(SDL_INIT_VIDEO) == 0) { // replace with SDL_Sys
-        std::fprintf(stderr, "SDL_Init failed: %s\n", SDL_GetError());
-        return 1;
-    }
+    SDL_Sys sys();
+    
 
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 3);
