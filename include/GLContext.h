@@ -24,7 +24,7 @@ public:
     void makeCurrent(Window& window);
     void swap(Window& window);
 
-    static void setDefaultAttributes(); // static: can be called without an existing GL object.
+    static void setDefaultAttributes(); 
     void setViewport(int w, int h);
     SDL_GLContext ctx = nullptr;
 
